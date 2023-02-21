@@ -7,8 +7,10 @@ SoftwareSerial Roomba(rxPin,txPin);
 
 void setup() 
 {
+  Serial.begin(115200)
+  while(!Serial){}
   Roomba.begin(19200);
-  
+  while(!Roomba){}
   pinMode(ddPin, OUTPUT);
   pinMode(buttonPin, INPUT_PULLUP); // connected to Arduino pin 12 and used for "starting"
 
@@ -22,7 +24,9 @@ void setup()
 
 void loop() 
 {
-  
+  if(Serial.available() > 0){
+    String message = Serial.readStringUnit('\n');
+  }
 }
 
 void wakeUp (void)
