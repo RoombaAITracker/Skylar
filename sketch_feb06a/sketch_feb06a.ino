@@ -20,12 +20,22 @@ void setup()
   startSafe();
 
   drive(500, 0);
+
 }
 
 void loop() 
 {
   if(Serial.available() > 0){
     String message = Serial.readStringUnit('\n');
+    if (message == "forward") {
+      drive(500,0);
+    } else if (message == "right") {
+      turnCW(500,10);
+    } else if (message == "left") {
+      turnCCW(500,10);
+    } else {
+      turnCW(500,10);
+    }
   }
 }
 
