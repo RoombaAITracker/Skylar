@@ -12,7 +12,7 @@ try:
     while True:
         time.sleep(0.01)
         print("Send message to arduino")
-        ser.write("Hello from Raspberry Pi\n".encode('utf-8'))
+        ser.write("forward".encode('utf-8'))
 
 except KeyboardInterrupt:
     print("Close Serial Communcation")

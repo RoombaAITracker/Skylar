@@ -33,7 +33,7 @@ void loop()
       turnCW(500,10);
     } else if (message == "left") {
       turnCCW(500,10);
-    } else {
+    } else if (message == "right") {
       turnCW(500,10);
     }
   }
