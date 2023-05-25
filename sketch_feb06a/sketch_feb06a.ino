@@ -18,7 +18,6 @@ void setup()
   
   wakeUp();
   startSafe();
-
   drive(500, 0);
 
 }
