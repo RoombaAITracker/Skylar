@@ -2,6 +2,15 @@ from ultralytics import YOLO
 import cv2
 import cvzone
 import math
+import serial
+import time
+
+arduino = serial.Serial(port='../dev/tty.usbmodemfa141', baudrate=115200)
+
+def write_read(x):
+    arduino.write(bytes(x, 'utf-8'))
+    time.sleep(0.05)
+    data = arduino.readline()
 
 #'http://10.0.233.107:4747/video'
 cap = cv2.VideoCapture(0)
@@ -23,13 +32,17 @@ while True:
                 x1,y1,x2,y2 = box.xyxy[0]
                 x1,y1,x2,y2 = int(x1),int(y1),int(x2),int(y2)
                 val = ((x2+x1)//2)
+                cv2.rectangle(img,(x1,y1),(x2,y2),(255,0,255),3)
 
                 if (val < 480):
-                    print("l")
+                    write_read("left")
+                    print("left")
                 elif (val > 800):
-                    print("r")
+                    write_read("right")
+                    print("right")
                 else:
-                    print("f")
+                    write_read("forward")
+                    print("forward")
             else:
                 print("n")
 
